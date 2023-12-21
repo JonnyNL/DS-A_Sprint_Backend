@@ -5,9 +5,16 @@ import java.lang.Exception;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.*;
+@Entity
 public class BinarySearchTree {
-    private BinaryNode root;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "root_node_id", referencedColumnName = "id")
+    private BinaryNode root;
     public BinarySearchTree() {
         this.root = null;
     }
@@ -163,6 +170,18 @@ public class BinarySearchTree {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    // Need a method to save json to database
+    public void saveToDatabase(EntityManager entityManager) {
+        try {
+            String jsonTree = serialize();
+            if (jsonTree != null) {
+                entityManager.persist(this);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

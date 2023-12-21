@@ -2,7 +2,10 @@ package com.keyin.DAL;
 import java.util.ArrayList;
 import java.util.List;
 import com.keyin.Tree.BinarySearchTree;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import jakarta.persistence.*;
 
 // SERVICE LAYER FOR BINARY TREES
 @Service
@@ -20,6 +23,7 @@ public class BSTService {
 
     public BinarySearchTree constructBST() {
         if (currentTree != null) {
+            saveCurrentTree();
             previousTrees.add(currentTree);
         }
         return currentTree;
@@ -27,5 +31,14 @@ public class BSTService {
 
     public List<BinarySearchTree> getPreviousTrees() {
         return previousTrees;
+    }
+
+    @Autowired
+    private EntityManager entityManager;
+    @Transactional
+    public void saveCurrentTree() {
+        if (currentTree != null) {
+            currentTree.saveToDatabase(entityManager);
+        }
     }
 }
