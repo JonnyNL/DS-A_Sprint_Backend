@@ -8,17 +8,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/treeify")
 @CrossOrigin(origins = "http://localhost:3000")
-public class InputController {
+public class BSTController {
 
     private final List<BinarySearchTree> trees = new ArrayList<>();
-
+    // Routing process-numbers to postmapping to take users array of integers
     @PostMapping("/process-numbers")
-    public String processInput(@RequestParam("numbers") String numbersEntered) {
+    public String processInput(@RequestParam("numbers") String nmbersEntered) {
         BinarySearchTree bsTree = new BinarySearchTree();
 
-        String[] numbersList = numbersEntered.split("\\s+");
+        String[] numbersList = nmbersEntered.split("\\s+");
         for (String number : numbersList) {
-            int num = Integer.parseInt(number.trim()); // Trim to remove any leading/trailing spaces
+            int num = Integer.parseInt(number.trim());
             bsTree.insert(num);
         }
 
@@ -27,7 +27,7 @@ public class InputController {
 
         return jsonFormatTree;
     }
-
+    // Routing /previous-trees to get mapping to get all possible trees, store them to an array and then iterate through them converting to json
     @GetMapping("/previous-trees")
     public List<String> previousTrees() {
         List<String> jsonTrees = new ArrayList<>();

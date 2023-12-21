@@ -1,9 +1,10 @@
 package com.keyin.Tree;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.keyin.Tree.BinaryNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+
 public class BinarySearchTree {
     private BinaryNode root;
 
@@ -14,7 +15,7 @@ public class BinarySearchTree {
     public void insert(int value) {
         root = insert(root, value);
     }
-
+    // Structuring node placement on bst
     private BinaryNode insert(BinaryNode currentNode, int value) {
         if (currentNode == null) {
             return new BinaryNode(value);
@@ -25,11 +26,12 @@ public class BinarySearchTree {
         }
         return currentNode;
     }
-
+    // Using jackson to serialize tree to json
     public String serialize() {
         try {
+            // Creating a new objectmapper instance to define settings such as letting null appear
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            objectMapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
             objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
             return objectMapper.writeValueAsString(root);
         } catch (Exception e) {
