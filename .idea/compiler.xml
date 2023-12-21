@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Sprint2" />
+        <module name="ApiRoutes" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ApiRoutes" target="17" />
       <module name="DS-A_Sprint_Backendd" target="17" />
       <module name="SDATandDevOPsQAP2" target="17" />
+      <module name="Sprint2" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
