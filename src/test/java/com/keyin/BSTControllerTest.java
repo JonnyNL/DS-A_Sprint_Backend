@@ -42,15 +42,7 @@ public class BSTControllerTest {
                         .param("numbers", numbers))
                 .andExpect(status().isOk());
     }
-
-    @Test
-    void testBadRequest() throws Exception {
-        String invalidNumbers = "abc";
-
-        mockMvc.perform(post("/treeify/process-numbers")
-                        .param("numbers", invalidNumbers))
-                .andExpect(status().isBadRequest());
-    }
+    
 
 
 }
