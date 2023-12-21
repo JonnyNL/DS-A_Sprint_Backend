@@ -24,7 +24,6 @@ public class BSTController {
 
         String jsonFormatTree = bsTree.serialize();
         trees.add(bsTree);
-
         return jsonFormatTree;
     }
     // Routing /previous-trees to get mapping to get all possible trees, store them to an array and then iterate through them converting to json
