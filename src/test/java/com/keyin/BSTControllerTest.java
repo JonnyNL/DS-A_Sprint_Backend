@@ -1,5 +1,6 @@
-package com.keyin.DAL;
+package com.keyin;
 
+import com.keyin.DAL.BSTController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class BSTControllerTest {
                         .param("numbers", numbers))
                 .andExpect(status().isOk());
     }
-    
+
 
 
 }
